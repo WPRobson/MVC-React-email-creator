@@ -10,12 +10,13 @@ interface HomeState {
     floatingColumnColour: string;
     markDownContent: string;
     textColour: string;
+    textSize: string;
 }
 
 export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
     constructor() {
         super();
-        this.state = { backGroundColour: "#ffffff", floatingColumn: false, floatingColumnColour: "#00aaaa", markDownContent: "<h1>Email content</h1>", textColour: '#000000' };
+        this.state = { backGroundColour: "#ffffff", floatingColumn: false, floatingColumnColour: "#00aaaa", markDownContent: "<h1>Email content</h1>", textColour: '#000000', textSize: '14' };
     }
 
 
@@ -32,6 +33,8 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
                     setMarkDownText={this.setMarkDownText}
                     textColour={this.state.textColour}
                     changeTextColour={this.changeTextColour}
+                    textSize={this.state.textSize}
+                    changeTextSize={this.changeTextSize}
                 />
             </div>
             <div className='col-sm-9' style={{ height: '100%' }}>
@@ -40,6 +43,7 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
                     floatingColumnColour={this.state.floatingColumnColour}
                     markDownContent={this.state.markDownContent}
                     textColour={this.state.textColour}
+                    textSize={this.state.textSize}
                 />
             </div>
         </div>;
@@ -78,6 +82,13 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
     changeTextColour = (color: string) => {
         this.setState({
             textColour: color
+        });
+
+    }
+
+    changeTextSize = (size: string) => {
+        this.setState({
+            textSize: size
         });
 
     }

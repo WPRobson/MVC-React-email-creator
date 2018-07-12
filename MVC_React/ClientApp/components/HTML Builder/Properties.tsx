@@ -1,17 +1,17 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-interface PropertiesProps {
-    backGround: string;
-    floatingColumn: boolean;
-    changeFloatingColumn: any;
-    changeBackgroundColor: any;
-    floatingColumnColour: any;
-    contentInput: string;
-    changeFloatingColumnColor: any;
+//interface PropertiesProps {
+//    backGround: string;
+//    floatingColumn: boolean;
+//    changeFloatingColumn: any;
+//    changeBackgroundColor: any;
+//    floatingColumnColour: any;
+//    contentInput: string;
+//    changeFloatingColumnColor: any;
 
 
-}
+//}
 
 
 
@@ -43,7 +43,7 @@ export class Proterties extends React.Component<any, any>{
             </div>
 
             <div className="form-group" hidden={!this.props.floatingColumn}>
-                <label hidden={!this.props.floatingColumn} >Floating column colour</label>
+                <label hidden={!this.props.floatingColumn} >Floating Column colour</label>
                 <input type="color" id="head" name="color" value={this.props.floatingColumnColour} className="form-control" hidden={!this.props.floatingColumn} onChange={(event) => { this.props.changeFloatingColumnColor(event.target.value) }} />
             </div>
             <br />
@@ -58,6 +58,12 @@ export class Proterties extends React.Component<any, any>{
             <div className="form-group">
                 <label>Text Colour</label>
                 <input type="color" value={this.props.textColour} className="form-control" onChange={(event) => { this.props.changeTextColour(event.target.value) }} />
+            </div>
+
+
+            <div className="form-group">
+                <label>Font Size</label>
+                <input type="text" value={this.props.textSize} className="form-control" onChange={(event) => { this.props.changeTextSize(event.target.value) }} />
             </div>
 
         </div>;
