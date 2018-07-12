@@ -15,9 +15,7 @@ import { RouteComponentProps } from 'react-router';
 
 
 
-
-
-declare var showdown: any;
+declare var showdown: any; // magic
 
 export class Proterties extends React.Component<any, any>{
 
@@ -65,6 +63,17 @@ export class Proterties extends React.Component<any, any>{
                 <label>Font Size</label>
                 <input type="text" value={this.props.textSize} className="form-control" onChange={(event) => { this.props.changeTextSize(event.target.value) }} />
             </div>
+
+            <div className="form-group">
+                <label>Font Type </label>
+                <select className="custom-select form-control">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+
 
         </div>;
     }
