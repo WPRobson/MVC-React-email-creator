@@ -1,18 +1,6 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-//interface PropertiesProps {
-//    backGround: string;
-//    floatingColumn: boolean;
-//    changeFloatingColumn: any;
-//    changeBackgroundColor: any;
-//    floatingColumnColour: any;
-//    contentInput: string;
-//    changeFloatingColumnColor: any;
-
-
-//}
-
 
 
 declare var showdown: any; // magic
@@ -25,77 +13,47 @@ export class Proterties extends React.Component<any, any>{
     }
 
     public render() {
-        return <div className="container-fluid">
+        return <div className="container-fluid propertiesBar">
 
 
-            <div className="form-group">
-                <label>Background Colour</label>
-                <input type="color" id="head" name="color" value={this.props.backGround} className="form-control" onChange={(event) => { this.props.changeBackgroundColor(event.target.value) }} />
-            </div>
+            <label>Background Colour</label>
+            <input type="color" value={this.props.backGround} onChange={(event) => { this.props.changeBackgroundColor(event.target.value) }} />
 
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onChange={(event) => { this.props.changeFloatingColumn() }} />
-                <label className="form-check-label" >
-                    Floating column
-                        </label>
-            </div>
+            
+            <label className="form-check-label">Floating column</label>
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onChange={(event) => { this.props.changeFloatingColumn() }} />
+      
 
-            <div className="form-group" hidden={!this.props.floatingColumn}>
-                <label hidden={!this.props.floatingColumn} >Floating Column colour</label>
-                <input type="color" id="head" name="color" value={this.props.floatingColumnColour} className="form-control" hidden={!this.props.floatingColumn} onChange={(event) => { this.props.changeFloatingColumnColor(event.target.value) }} />
-            </div>
-            <br />
-            <div className="form-group">
-                <label>Content (Markdown)</label>
-                <textarea className="form-control" rows={10} value={this.state.contentInput} onChange={(event) => this.updateMarkdownContent(event.target.value)} >
-                    Email content here
-                </textarea>
-                <button onClick={() => { this.ConventMarkdownToHtml() }}>Save</button>
-            </div>
-
-            <div className="form-group">
-                <label>Text Colour</label>
-                <input type="color" value={this.props.textColour} className="form-control" onChange={(event) => { this.props.changeTextColour(event.target.value) }} />
-            </div>
+            <label>Floating Column colour</label>
+            <input type="color" value={this.props.floatingColumnColour} disabled={!this.props.floatingColumn} onChange={(event) => { this.props.changeFloatingColumnColor(event.target.value) }} />
 
 
-            <div className="form-group">
-                <label>Font Size</label>
-                <input type="text" value={this.props.textSize} className="form-control" onChange={(event) => { this.props.changeTextSize(event.target.value) }} />
-            </div>
+            <label>Text Colour</label>
+            <input type="color" value={this.props.textColour} onChange={(event) => { this.props.changeTextColour(event.target.value) }} />
 
-            <div className="form-group">
-                <label>Font Type </label>
-                <select className="custom-select form-control">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
+            <label>Font Size</label>
+            <input type="text" value={this.props.textSize} onChange={(event) => { this.props.changeTextSize(event.target.value) }} />
 
 
-        </div>;
+            <label>Font Type </label>
+            <select className="custom-select" onChange={(event) => this.props.changeTextFont(event.target.value)}>
+                <option value="Arial, Helvetica, sans-serif" selected>Arial, Helvetica, sans-serif</option>
+                <option value="Georgia, serif">Georgia, serif</option>
+                <option value="Palatino Linotype, Book Antiqua, Palatino, serif">Palatino Linotype, Book Antiqua, Palatino, serif</option>
+                <option value="Times New Roman, Times, serif">Times New Roman, Times, serif</option>
+                <option value="Arial Black, Gadget, sans-serif">Arial Black, Gadget, sans-serif</option>
+                <option value="Comic Sans MS, cursive, sans-serif">Comic Sans MS, cursive, sans-serif</option>
+                <option value="Impact, Charcoal, sans-serif">Impact, Charcoal, sans-serif</option>
+                <option value="Lucida Sans Unicode, Lucida Grande, sans-serif">Lucida Sans Unicode, Lucida Grande, sans-serif</option>
+                <option value="Tahoma, Geneva, sans-serif">Tahoma, Geneva, sans-serif</option>
+                <option value="Trebuchet MS, Helvetica, sans-serif">Trebuchet MS, Helvetica, sans-serif"</option>
+                <option value="Verdana, Geneva, sans-serif">Verdana, Geneva, sans-serif</option>
+                <option value="Courier New, Courier, monospace">Courier New, Courier, monospace</option>
+                <option value="Lucida Console, Monaco, monospace">Lucida Console, Monaco, monospace</option>
+            </select>
+
+
+        </div >;
     }
-
-
-    ConventMarkdownToHtml = () => {
-
-        var converter = new showdown.Converter(),
-
-            html = converter.makeHtml(this.state.contentInput);
-
-
-        this.props.setMarkDownText(html);
-
-    }
-
-
-    updateMarkdownContent = (newMarkDown: string) =>
-    {
-        this.setState({ contentInput: newMarkDown})
-
-    }
-
 
 }
