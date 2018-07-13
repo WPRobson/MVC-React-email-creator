@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\components\HTML Builder\Insertmarkdown.tsx" />
     <None Remove="ClientApp\components\HTML Builder\MainViewer.tsx" />
     <None Remove="ClientApp\components\HTML Builder\MarkdownEditor.tsx" />
     <None Remove="ClientApp\components\HTML Builder\Properties.tsx" />
@@ -28,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\HTML Builder\Insertmarkdown.tsx" />
     <TypeScriptCompile Include="ClientApp\components\HTML Builder\MainViewer.tsx" />
     <TypeScriptCompile Include="ClientApp\components\HTML Builder\MarkdownEditor.tsx" />
     <TypeScriptCompile Include="ClientApp\components\HTML Builder\Properties.tsx" />

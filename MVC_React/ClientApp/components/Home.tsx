@@ -9,10 +9,11 @@ interface HomeState {
     backGroundColour: string;
     floatingColumn: boolean;
     floatingColumnColour: string;
-    markDownContent: string;
+    HTML: string;
     textColour: string;
     textSize: string;
     fontType: string;
+    markdown: string;
 }
 
 export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
@@ -22,10 +23,11 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
             backGroundColour: "#ffffff",
             floatingColumn: false,
             floatingColumnColour: "#efefef",
-            markDownContent: "<p>Email content<p>",
+            HTML: "<p>Email content<p>",
             textColour: '#000000',
             textSize: '14',
-            fontType: 'Arial, Helvetica, sans-serif'
+            fontType: 'Arial, Helvetica, sans-serif',
+            markdown: ""
         };
     }
 
@@ -41,8 +43,8 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
                 changeFloatingColumn={this.changeFloatingColumn}
                 floatingColumnColour={this.state.floatingColumnColour}
                 changeFloatingColumnColor={this.changeFloatingColoumnColour}
-                markDownContent={this.state.markDownContent}
-                setMarkDownText={this.setMarkDownText}
+                HTML={this.state.HTML}
+                setMarkDownText={this.setHtml}
                 textColour={this.state.textColour}
                 changeTextColour={this.changeTextColour}
                 textSize={this.state.textSize}
@@ -54,14 +56,14 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
         
             
             <div className='col-sm-3' style={{ height: '100%', border: "0.5px solid black" }}>
-                <MarkdownEditor setMarkDownText={this.setMarkDownText} /> 
+                <MarkdownEditor setHtml={this.setHtml} /> 
             </div>
 
             <div className='col-sm-9' style={{ height: '100%' }}>
                 <MainViewer backGround={this.state.backGroundColour}
                     floatingColumn={this.state.floatingColumn}
                     floatingColumnColour={this.state.floatingColumnColour}
-                    markDownContent={this.state.markDownContent}
+                    HTML={this.state.HTML}
                     textColour={this.state.textColour}
                     textSize={this.state.textSize}
                     fontType={this.state.fontType}
@@ -93,9 +95,9 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
 
     }
 
-    setMarkDownText = (markdownText: string) =>
+    setHtml = (html: string) =>
         {
-        this.setState({ markDownContent: markdownText}) 
+        this.setState({ HTML: html}) 
             
 
         }

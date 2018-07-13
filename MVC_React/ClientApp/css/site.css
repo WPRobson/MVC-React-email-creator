@@ -93,6 +93,13 @@
         }
 
     #InsertContent button {
-        margin-left: 50px;
+        margin: 20px;
+        
+    }
+
+    .InsertOption 
+    {
+        
+        margin:0px;
     }
 }

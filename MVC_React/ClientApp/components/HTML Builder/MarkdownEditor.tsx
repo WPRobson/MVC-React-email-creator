@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
+import { Insertmarkdown} from "./Insertmarkdown"
 
 
 
@@ -12,7 +13,7 @@ export class MarkdownEditor extends React.Component<any, any>{
 
     constructor() {
         super();
-        this.state = { contentInput: "Email content" };
+        this.state = { contentInput: "Email content", markdownText: "" };
     }
 
     public render() {
@@ -27,6 +28,9 @@ export class MarkdownEditor extends React.Component<any, any>{
                     <a data-toggle="tab" className="nav-link" href="#ImagesContent">Images</a>
                 </li>
                 <li className="nav-item">
+                    <a data-toggle="tab" className="nav-link" href="#Insertcontent">Insert</a>
+                </li>
+                <li className="nav-item">
                     <a data-toggle="tab" className="nav-link" href="#CheatSheetcontent">Cheat sheet</a>
                 </li>
             </ul>
@@ -36,6 +40,12 @@ export class MarkdownEditor extends React.Component<any, any>{
                 <div id="controlsContent" className="tab-pane active">
                     <label>Content (Markdown)</label>
                     <textarea className="form-control" rows={20} onChange={(event) => this.ConventMarkdownToHtml(event.target.value)} > </textarea>
+                </div>
+                <div id="Insertcontent" className="tab-pane">
+                    <Insertmarkdown />
+                </div>
+                <div id="CheatSheetcontent" className="tab-pane">
+                    <a href="https://www.markdownguide.org/cheat-sheet">Markdown cheat cheet</a> 
                 </div>
 
 
@@ -54,9 +64,22 @@ export class MarkdownEditor extends React.Component<any, any>{
 
             html = converter.makeHtml(text);
 
+        this.setState({
+            markdownText: text
+        })
 
-        this.props.setMarkDownText(html);
+
+        this.props.setHtml(html);
 
     }
 
+    UpdateMarkdown = (value: string) =>
+    {
+
+        this.setState({
+            markdownText: value
+
+        })
+
+    }
 }
