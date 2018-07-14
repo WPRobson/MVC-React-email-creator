@@ -42,7 +42,7 @@ export class MarkdownEditor extends React.Component<any, any>{
                     <textarea className="form-control" rows={20} onChange={(event) => this.ConventMarkdownToHtml(event.target.value)} value={this.props.markdown}> </textarea>
                 </div>
                 <div id="Insertcontent" className="tab-pane">
-                    <Insertmarkdown />
+                    <Insertmarkdown markdown={this.props.markdown} setMarkdown={this.props.setMarkdown} ConventMarkdownToHtml={this.ConventMarkdownToHtml} />
                 </div>
                 <div id="CheatSheetcontent" className="tab-pane">
                     <a href="https://www.markdownguide.org/cheat-sheet">Markdown cheat cheet</a> 
