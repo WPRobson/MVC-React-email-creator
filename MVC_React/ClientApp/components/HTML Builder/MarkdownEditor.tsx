@@ -39,7 +39,7 @@ export class MarkdownEditor extends React.Component<any, any>{
             <div className="tab-content">
                 <div id="controlsContent" className="tab-pane active">
                     <label>Content (Markdown)</label>
-                    <textarea className="form-control" rows={20} onChange={(event) => this.ConventMarkdownToHtml(event.target.value)} > </textarea>
+                    <textarea className="form-control" rows={20} onChange={(event) => this.ConventMarkdownToHtml(event.target.value)} value={this.props.markdown}> </textarea>
                 </div>
                 <div id="Insertcontent" className="tab-pane">
                     <Insertmarkdown />
@@ -68,6 +68,7 @@ export class MarkdownEditor extends React.Component<any, any>{
             markdownText: text
         })
 
+        this.props.setMarkdown(text)
 
         this.props.setHtml(html);
 
