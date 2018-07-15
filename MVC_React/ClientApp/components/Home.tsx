@@ -4,6 +4,8 @@ import { RouteComponentProps } from 'react-router';
 import { Proterties } from './HTML Builder/Properties';
 import { MainViewer } from './HTML Builder/MainViewer';
 import { MarkdownEditor } from './HTML Builder/MarkdownEditor';
+import ReactMde, { ReactMdeTypes } from 'react-mde'
+
 
 interface HomeState {
     backGroundColour: string;
@@ -14,7 +16,10 @@ interface HomeState {
     textSize: string;
     fontType: string;
     markdown: string;
+    mdeState: ReactMdeTypes.MdeState;
+
 }
+
 
 export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
     constructor() {
@@ -27,15 +32,16 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
             textColour: '#000000',
             textSize: '14',
             fontType: 'Arial, Helvetica, sans-serif',
-            markdown: "Email content"
+            markdown: "Email content",
+            mdeState: null,
         };
     }
-
 
 
     public render() {
         return <div className='' style={{ height: '100%' }}>
 
+            <ReactMde />
            
 
             <Proterties backGround={this.state.backGroundColour} changeBackgroundColor={this.changeBackGrondColour}
