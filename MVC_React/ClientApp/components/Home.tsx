@@ -21,7 +21,7 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
         super();
         this.state = {
             backGroundColour: "#ffffff",
-            floatingColumn: false,
+            floatingColumn: true,
             floatingColumnColour: "#efefef",
             HTML: "<p>Email content<p>",
             textColour: '#000000',
@@ -55,11 +55,11 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
             />
         
             
-            <div className='col-sm-3' style={{ height: '100%', border: "0.5px solid black" }}>
+            <div className='col-sm-5' style={{ height: '100%', border: "0.5px solid black" }}>
                 <MarkdownEditor setHtml={this.setHtml} markdown={this.state.markdown} setMarkdown={this.setMarkdown} /> 
             </div>
 
-            <div className='col-sm-9' style={{ height: '100%' }}>
+            <div className='col-sm-7' style={{ height: '100%' }}>
                 <MainViewer backGround={this.state.backGroundColour}
                     floatingColumn={this.state.floatingColumn}
                     floatingColumnColour={this.state.floatingColumnColour}

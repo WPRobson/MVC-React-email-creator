@@ -21,7 +21,7 @@ export class Proterties extends React.Component<any, any>{
 
             
             <label className="form-check-label">Floating column</label>
-            <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onChange={(event) => { this.props.changeFloatingColumn() }} />
+            <input className="form-check-input" type="checkbox" checked={this.props.floatingColumn} id="defaultCheck1" onChange={(event) => { this.props.changeFloatingColumn() }}  disabled />
       
 
             <label>Floating Column colour</label>
@@ -37,7 +37,7 @@ export class Proterties extends React.Component<any, any>{
 
             <label>Font Type </label>
             <select className="custom-select" onChange={(event) => this.props.changeTextFont(event.target.value)}>
-                <option value="Arial, Helvetica, sans-serif" selected>Arial, Helvetica, sans-serif</option>
+                <option defaultValue ="Arial, Helvetica, sans-serif" >Arial, Helvetica, sans-serif</option>
                 <option value="Georgia, serif">Georgia, serif</option>
                 <option value="Palatino Linotype, Book Antiqua, Palatino, serif">Palatino Linotype, Book Antiqua, Palatino, serif</option>
                 <option value="Times New Roman, Times, serif">Times New Roman, Times, serif</option>
