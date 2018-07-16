@@ -4,8 +4,8 @@ import { RouteComponentProps } from 'react-router';
 import { Proterties } from './HTML Builder/Properties';
 import { MainViewer } from './HTML Builder/MainViewer';
 import { MarkdownEditor } from './HTML Builder/MarkdownEditor';
-import ReactMde, { ReactMdeTypes } from 'react-mde'
-
+import { Editor, EditorState, EditorProps } from 'draft-js';
+import { DraftEditor} from './HTML Builder/DraftEditor'
 
 interface HomeState {
     backGroundColour: string;
@@ -16,7 +16,9 @@ interface HomeState {
     textSize: string;
     fontType: string;
     markdown: string;
-    mdeState: ReactMdeTypes.MdeState;
+    editorState: EditorState;
+   
+    
 
 }
 
@@ -33,15 +35,19 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
             textSize: '14',
             fontType: 'Arial, Helvetica, sans-serif',
             markdown: "Email content",
-            mdeState: null,
+            editorState: EditorState.createEmpty(),
+            
         };
+      
+
     }
 
 
     public render() {
         return <div className='' style={{ height: '100%' }}>
 
-            <ReactMde />
+           
+
            
 
             <Proterties backGround={this.state.backGroundColour} changeBackgroundColor={this.changeBackGrondColour}
@@ -59,11 +65,16 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
                 changeTextFont={this.changeTextFont}
                
             />
-        
+            <div className='col-sm-5' style={{ height: '100%', border: "0.5px solid black" }}>
+                <DraftEditor setHtml={this.setHtml} markdown={this.state.markdown} setMarkdown={this.setMarkdown} />
+                </div>
+         {/*
             
             <div className='col-sm-5' style={{ height: '100%', border: "0.5px solid black" }}>
                 <MarkdownEditor setHtml={this.setHtml} markdown={this.state.markdown} setMarkdown={this.setMarkdown} /> 
             </div>
+
+*/}
 
             <div className='col-sm-7' style={{ height: '100%' }}>
                 <MainViewer backGround={this.state.backGroundColour}
@@ -75,6 +86,8 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
                     fontType={this.state.fontType}
                 />
             </div>
+
+        
         </div>;
     }
 
@@ -134,6 +147,10 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
             fontType : font
         });
 
+    }
+
+    EditorOnChange = (editorState: EditorState) => {
+        this.setState({ editorState });
     }
 
 
