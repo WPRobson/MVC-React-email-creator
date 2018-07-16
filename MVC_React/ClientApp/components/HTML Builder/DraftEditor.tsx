@@ -43,6 +43,16 @@ export class DraftEditor extends React.Component<any, any>
 
                 <button onClick={this._onInsertTableClick.bind(this)}><i className="fas fa-table"></i></button>
 
+                <button onClick={this._onInsertPagebreak.bind(this)}> Break line</button>
+
+                <button onClick={this._onInsertHeading.bind(this)}><i className="fas fa-heading"></i></button>
+
+                <button onClick={this._onInsertHyperlink.bind(this)}><i className="fas fa-link"></i></button>
+
+                <button onClick={this._onInsertUnOrderdList.bind(this)}><i className="fas fa-list-ul"></i></button>
+
+                <button onClick={this._onInsertOrderdList.bind(this)}><i className="fas fa-list-ol"></i></button>
+
 
             </div>
             <Editor editorState={this.state.editorState} onChange={this.onChange} placeholder={this.state.placeholder} spellCheck={this.state.spellcheck} />
@@ -55,39 +65,20 @@ export class DraftEditor extends React.Component<any, any>
     onChange = (editorState: EditorState) => {
         this.setState({ editorState });
         this.ConventMarkdownToHtml(editorState.getCurrentContent().getPlainText());
-        
+
     }
 
 
     _onBoldClick() {
-        //this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-        const editorState = this.state.editorState;
-        const selection = editorState.getSelection();
-        const contentState = editorState.getCurrentContent();
-        let selectedText: any = this._getTextSelection(contentState, selection, '');
-        const ncs = Modifier.replaceText(contentState, selection, "__" + selectedText + "__");
-        const es = EditorState.push(editorState, ncs, 'insert-fragment');
-        this.setState({ editorState: es })
+        this.appendOrAddnewMarkdown('__', '__')
     }
 
     _onUnderlineClick() {
-        const editorState = this.state.editorState;
-        const selection = editorState.getSelection();
-        const contentState = editorState.getCurrentContent();
-        let selectedText: any = this._getTextSelection(contentState, selection, '');
-        const ncs = Modifier.replaceText(contentState, selection, "<u>" + selectedText + "</u>");
-        const es = EditorState.push(editorState, ncs, 'insert-fragment');
-        this.setState({ editorState: es })
+        this.appendOrAddnewMarkdown('<u>', '</u>')
     }
 
     onItalicClick() {
-        const editorState = this.state.editorState;
-        const selection = editorState.getSelection();
-        const contentState = editorState.getCurrentContent();
-        let selectedText: any = this._getTextSelection(contentState, selection, '');
-        const ncs = Modifier.replaceText(contentState, selection, "*" + selectedText + "*");
-        const es = EditorState.push(editorState, ncs, 'insert-fragment');
-        this.setState({ editorState: es })
+        this.appendOrAddnewMarkdown('*', '*')
     }
 
     _onInsertTableClick() {
@@ -95,18 +86,40 @@ export class DraftEditor extends React.Component<any, any>
         const selection = editorState.getSelection();
         const contentState = editorState.getCurrentContent();
         const ncs = Modifier.insertText(contentState, selection,
-`| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |`
+            ` | Heading     | Heading    |
+| ----------- | ----------- |
+| item  1     | item 3      |
+| item 2      | item 4      |`
         );
         const es = EditorState.push(editorState, ncs, 'insert-fragment');
         this.setState({ editorState: es })
     }
 
+    _onInsertPagebreak() {
+        this.appendOrAddnewMarkdown('</br>', '')
+    }
 
-   
+    _onInsertHeading() {
+        this.appendOrAddnewMarkdown('#', '')
+    }
+
+    _onInsertHyperlink() {
+        this.appendOrAddnewMarkdown('[Google](https://google.co.uk)', '')
+    }
+
+    _onInsertOrderdList() {
+        this.appendOrAddnewMarkdown(`1. item 1 (keep the space between number and the item)
+2. item 2
+3. item 3`, '')
+    }
+
+    _onInsertUnOrderdList() {
+        this.appendOrAddnewMarkdown(`- First item (keep space between dash and the item)
+- Second item
+- Third item`, '')
+    }
+
+
 
 
     ConventMarkdownToHtml = (text: string) => {
@@ -135,54 +148,67 @@ export class DraftEditor extends React.Component<any, any>
     }
 
 
-    appendOrAddnewMarkdown = (startTag:string, endTag: string) =>
-    {
+    appendOrAddnewMarkdown = (startTag: string, endTag: string) => {
+        const editorState = this.state.editorState;
+        const selection = editorState.getSelection();
+        const contentState = editorState.getCurrentContent();
+        let selectedText: any = this._getTextSelection(contentState, selection, '');
 
+        let ncs = null;
+        if (selectedText == "" && endTag != "") {
+            ncs = Modifier.replaceText(contentState, selection, startTag + 'Text here' + endTag);
+        }
+        else {
+            ncs = Modifier.replaceText(contentState, selection, startTag + selectedText + endTag);
+        }
+
+        const es = EditorState.push(editorState, ncs, 'insert-fragment');
+        this.setState({ editorState: es })
 
     }
 
 
     _getTextSelection(contentState: any, selection: any, blockDelimiter: any) {
-    blockDelimiter = blockDelimiter || '\n';
-    var startKey = selection.getStartKey();
-    var endKey = selection.getEndKey();
-    var blocks = contentState.getBlockMap();
+        blockDelimiter = blockDelimiter || '\n';
+        var startKey = selection.getStartKey();
+        var endKey = selection.getEndKey();
+        var blocks = contentState.getBlockMap();
 
-    var lastWasEnd = false;
-    var selectedBlock = blocks
-        .skipUntil(function (block: any) {
-            return block.getKey() === startKey;
-        })
-        .takeUntil(function (block: any) {
-            var result = lastWasEnd;
+        var lastWasEnd = false;
+        var selectedBlock = blocks
+            .skipUntil(function (block: any) {
+                return block.getKey() === startKey;
+            })
+            .takeUntil(function (block: any) {
+                var result = lastWasEnd;
 
-            if (block.getKey() === endKey) {
-                lastWasEnd = true;
-            }
+                if (block.getKey() === endKey) {
+                    lastWasEnd = true;
+                }
 
-            return result;
-        });
+                return result;
+            });
 
-    return selectedBlock
-        .map(function (block: any) {
-            var key = block.getKey();
-            var text = block.getText();
+        return selectedBlock
+            .map(function (block: any) {
+                var key = block.getKey();
+                var text = block.getText();
 
-            var start = 0;
-            var end = text.length;
+                var start = 0;
+                var end = text.length;
 
-            if (key === startKey) {
-                start = selection.getStartOffset();
-            }
-            if (key === endKey) {
-                end = selection.getEndOffset();
-            }
+                if (key === startKey) {
+                    start = selection.getStartOffset();
+                }
+                if (key === endKey) {
+                    end = selection.getEndOffset();
+                }
 
-            text = text.slice(start, end);
-            return text;
-        })
-        .join(blockDelimiter);
-}
+                text = text.slice(start, end);
+                return text;
+            })
+            .join(blockDelimiter);
+    }
 
 
 }
