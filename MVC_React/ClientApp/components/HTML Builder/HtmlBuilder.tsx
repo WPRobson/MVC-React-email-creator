@@ -47,9 +47,6 @@ export class HtmlBuilder extends React.Component<RouteComponentProps<any>, any> 
         return <div className='' style={{ height: '100%' }}>
 
 
-
-
-
             <Proterties backGround={this.state.backGroundColour} changeBackgroundColor={this.changeBackGrondColour}
                 floatingColumn={this.state.floatingColumn}
                 changeFloatingColumn={this.changeFloatingColumn}
