@@ -4,9 +4,14 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
+import { HtmlBuilder } from './components/HTML Builder/HtmlBuilder'
+import { DraftEditor } from './components/HTML Builder/DraftEditor'
+
 
 export const routes = <Layout>
     <Route exact path='/' component={ Home } />
     <Route path='/counter' component={ Counter } />
-    <Route path='/fetchdata' component={ FetchData } />
+    <Route path='/fetchdata' component={FetchData} />
+    <Route path='/htmlbuilder' component={HtmlBuilder} />
+   
 </Layout>;

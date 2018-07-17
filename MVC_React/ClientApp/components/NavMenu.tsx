@@ -23,6 +23,11 @@ export class NavMenu extends React.Component<{}, {}> {
                                     <span className='glyphicon glyphicon-home'></span> Home
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink to={'/htmlbuilder'} exact activeClassName='active'>
+                                    <span className='glyphicon glyphicon-envelope'></span> Email creator
+                                </NavLink>
+                            </li>
                             
                         </ul>
                     </div>
