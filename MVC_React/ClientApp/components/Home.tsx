@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, Route, Redirect } from 'react-router';
+import { Link, NavLink, RouteProps } from 'react-router-dom';
 
 import { HtmlBuilder } from './HTML Builder/HtmlBuilder'
 
 interface HomeState {
 
-
-
+    redirect: boolean;
 }
 
 let products = [{
@@ -21,23 +21,27 @@ let products = [{
 }];
 
 
-export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
+export class Home extends React.Component<any, HomeState>  {
     constructor() {
         super();
-        this.state = {
 
-
-        };
     }
 
+  
 
     public render() {
-        return <div className='' style={{ height: '100%' }}>
 
-            <p>home</p>
+        return <div className='' style={{ height: '100%' }}>
 
             <Table data={products} />
 
+            <NavLink to={'/htmlbuilder:1212'}  exact activeClassName='active'>
+                <span className='glyphicon glyphicon-envelope'></span> Email creator
+                                </NavLink>
+            
+
+
+            
 
         </div>;
     }
@@ -48,10 +52,10 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
 export const TableRow = (props: any) => {
 
     return (
-            <tr>
-                <td key={props.name}>{props.id}</td>
-                <td key={props.id}>{props.name}</td>
-            </tr>
+        <tr>
+            <td key={props.name}>{props.id}</td>
+            <td key={props.id}>{props.name}</td>
+        </tr>
 
     );
 
@@ -76,6 +80,15 @@ class Table extends React.Component<any> {
                     {this.props.data.map((tableRow: any) => <TableRow key={tableRow.id} {...tableRow} />)}
                 </tbody>
             </table>
+        );
+    }
+}
+
+class testRoute extends React.Component<any> {
+
+    render() {
+        return (
+            <p>test</p>
         );
     }
 }

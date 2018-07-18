@@ -6,12 +6,16 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { HtmlBuilder } from './components/HTML Builder/HtmlBuilder'
 import { DraftEditor } from './components/HTML Builder/DraftEditor'
+import { App } from './components/App';
+
+let test: string ="this is only a test"
+export const routes = <App>
 
 
-export const routes = <Layout>
-    <Route exact path='/' component={ Home } />
-    <Route path='/counter' component={ Counter } />
-    <Route path='/fetchdata' component={FetchData} />
-    <Route path='/htmlbuilder' component={HtmlBuilder} />
-   
-</Layout>;
+    <Route
+        exact path='/'
+        render={(routeProps) => (
+            <Home {...routeProps} {...test} />
+        )}
+    />
+</App>;

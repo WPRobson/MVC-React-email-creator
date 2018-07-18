@@ -23,7 +23,7 @@ interface HtmlBuilderState {
 }
 
 
-export class HtmlBuilder extends React.Component<RouteComponentProps<any>, any> {
+export class HtmlBuilder extends React.Component<any, any> {
     constructor() {
         super();
         this.state = {
@@ -46,7 +46,7 @@ export class HtmlBuilder extends React.Component<RouteComponentProps<any>, any> 
     public render() {
         return <div className='' style={{ height: '100%' }}>
 
-
+            <p>Id: {this.props.id}</p>
             <Proterties backGround={this.state.backGroundColour} changeBackgroundColor={this.changeBackGrondColour}
                 floatingColumn={this.state.floatingColumn}
                 changeFloatingColumn={this.changeFloatingColumn}

@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\components\App.tsx" />
     <None Remove="ClientApp\components\HTML Builder\DraftEditor.tsx" />
     <None Remove="ClientApp\components\HTML Builder\HtmlBuilder.tsx" />
     <None Remove="ClientApp\components\HTML Builder\Insertmarkdown.tsx" />
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\App.tsx" />
     <TypeScriptCompile Include="ClientApp\components\HTML Builder\DraftEditor.tsx" />
     <TypeScriptCompile Include="ClientApp\components\HTML Builder\HtmlBuilder.tsx" />
     <TypeScriptCompile Include="ClientApp\components\HTML Builder\Insertmarkdown.tsx" />
