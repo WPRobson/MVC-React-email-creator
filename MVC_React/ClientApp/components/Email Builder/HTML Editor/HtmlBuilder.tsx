@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 
 import { Proterties } from './Properties';
 import { MainViewer } from './MainViewer';
-import { MarkdownEditor } from './MarkdownEditor';
+
 import { Editor, EditorState, EditorProps } from 'draft-js';
 import { DraftEditor } from './DraftEditor'
 
@@ -36,7 +36,7 @@ export class HtmlBuilder extends React.Component<any, any> {
             fontType: 'Arial, Helvetica, sans-serif',
             markdown: "Email content",
             editorState: EditorState.createEmpty(),
-
+            
         };
 
 
@@ -46,7 +46,7 @@ export class HtmlBuilder extends React.Component<any, any> {
     public render() {
         return <div className='' style={{ height: '100%' }}>
 
-            <p>Id: {this.props.id}</p>
+            
             <Proterties backGround={this.state.backGroundColour} changeBackgroundColor={this.changeBackGrondColour}
                 floatingColumn={this.state.floatingColumn}
                 changeFloatingColumn={this.changeFloatingColumn}
@@ -65,13 +65,7 @@ export class HtmlBuilder extends React.Component<any, any> {
             <div className='col-sm-5' style={{ height: '100%', border: "0.5px solid black" }}>
                 <DraftEditor setHtml={this.setHtml} markdown={this.state.markdown} setMarkdown={this.setMarkdown} />
             </div>
-            {/*
-            
-            <div className='col-sm-5' style={{ height: '100%', border: "0.5px solid black" }}>
-                <MarkdownEditor setHtml={this.setHtml} markdown={this.state.markdown} setMarkdown={this.setMarkdown} /> 
-            </div>
 
-*/}
 
             <div className='col-sm-7' style={{ height: '100%' }}>
                 <MainViewer backGround={this.state.backGroundColour}

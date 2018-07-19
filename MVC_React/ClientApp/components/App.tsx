@@ -2,7 +2,8 @@
 import { Route, RouteComponentProps } from 'react-router-dom';
 import { NavMenu } from './NavMenu';
 import { Home } from './Home'
-import { HtmlBuilder } from './HTML Builder/HtmlBuilder'
+
+import { EmailCreator } from './Email Builder/EmailCreator';
 
 
 let test: string = "YAY!";
@@ -17,12 +18,7 @@ export class App extends React.Component<any,any> {
                         <Home something={test} />
                     )}
                     />
-                <Route
-                     path='/htmlbuilder:id'
-                    render={() => (
-                        <HtmlBuilder something={test} />
-                    )}
-                />
+                <Route path="/emailcreator/:id" component={EmailCreator} />
             </div>
 
             

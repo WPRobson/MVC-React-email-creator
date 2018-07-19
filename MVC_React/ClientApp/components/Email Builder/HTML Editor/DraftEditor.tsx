@@ -34,7 +34,7 @@ export class DraftEditor extends React.Component<any, any>
     public render() {
 
         return <div>
-            <div id="EditorControls">
+            <div id="EditorControls" style={{width:'100%'}}>
                 <button onClick={this._onBoldClick.bind(this)}><i className="fas fa-bold"></i> </button>
 
                 <button onClick={this._onUnderlineClick.bind(this)}><i className="fas fa-underline"></i></button>

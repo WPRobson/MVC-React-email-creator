@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,24 +24,24 @@
 
   <ItemGroup>
     <None Remove="ClientApp\components\App.tsx" />
-    <None Remove="ClientApp\components\HTML Builder\DraftEditor.tsx" />
-    <None Remove="ClientApp\components\HTML Builder\HtmlBuilder.tsx" />
-    <None Remove="ClientApp\components\HTML Builder\Insertmarkdown.tsx" />
-    <None Remove="ClientApp\components\HTML Builder\MainViewer.tsx" />
-    <None Remove="ClientApp\components\HTML Builder\MarkdownEditor.tsx" />
-    <None Remove="ClientApp\components\HTML Builder\Properties.tsx" />
-    <None Remove="ClientApp\components\SubItem.tsx" />
+    <None Remove="ClientApp\components\Email Builder\DraftEditor.tsx" />
+    <None Remove="ClientApp\components\Email Builder\HTML Editor\HTMLEditor.tsx" />
+    <None Remove="ClientApp\components\Email Builder\Insertmarkdown.tsx" />
+    <None Remove="ClientApp\components\Email Builder\MainViewer.tsx" />
+    <None Remove="ClientApp\components\Email Builder\Properties.tsx" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\components\App.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\HTML Builder\DraftEditor.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\HTML Builder\HtmlBuilder.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\HTML Builder\Insertmarkdown.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\HTML Builder\MainViewer.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\HTML Builder\MarkdownEditor.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\HTML Builder\Properties.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\SubItem.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Email Builder\HTML Editor\DraftEditor.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Email Builder\EmailCreator.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Email Builder\HTML Editor\Insertmarkdown.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Email Builder\HTML Editor\MainViewer.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Email Builder\HTML Editor\Properties.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\components\Email Builder\Data Builder\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

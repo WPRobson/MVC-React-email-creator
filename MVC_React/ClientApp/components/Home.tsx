@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps, Route, Redirect } from 'react-router';
 import { Link, NavLink, RouteProps } from 'react-router-dom';
 
-import { HtmlBuilder } from './HTML Builder/HtmlBuilder'
+import { HtmlBuilder } from './Email Builder/HTML Editor/HtmlBuilder'
 
 interface HomeState {
 
@@ -20,6 +20,10 @@ let products = [{
     id: 3
 }];
 
+let newTo = {
+    pathname: "/htmlbuilder/1111",
+    param1: "Par1"
+};
 
 export class Home extends React.Component<any, HomeState>  {
     constructor() {
@@ -27,21 +31,11 @@ export class Home extends React.Component<any, HomeState>  {
 
     }
 
-  
-
     public render() {
 
         return <div className='' style={{ height: '100%' }}>
 
             <Table data={products} />
-
-            <NavLink to={'/htmlbuilder:1212'}  exact activeClassName='active'>
-                <span className='glyphicon glyphicon-envelope'></span> Email creator
-                                </NavLink>
-            
-
-
-            
 
         </div>;
     }
@@ -55,6 +49,7 @@ export const TableRow = (props: any) => {
         <tr>
             <td key={props.name}>{props.id}</td>
             <td key={props.id}>{props.name}</td>
+            <td><Link to={{pathname: '/emailcreator/'+props.id}}><button className="btn btn-danger">Edit</button></Link></td>
         </tr>
 
     );
@@ -72,6 +67,7 @@ class Table extends React.Component<any> {
                     <tr>
                         <th>#</th>
                         <th>Email Name</th>
+                        <th></th>
 
 
                     </tr>
@@ -84,11 +80,3 @@ class Table extends React.Component<any> {
     }
 }
 
-class testRoute extends React.Component<any> {
-
-    render() {
-        return (
-            <p>test</p>
-        );
-    }
-}
