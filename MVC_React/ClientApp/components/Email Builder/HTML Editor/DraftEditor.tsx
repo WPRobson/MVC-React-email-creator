@@ -124,13 +124,10 @@ export class DraftEditor extends React.Component<any, any>
 
     ConventMarkdownToHtml = (text: string) => {
 
-        var converter = new showdown.Converter({ tables: true, strikethrough: true }),
+        var converter = new showdown.Converter({ tables: true, strikethrough: true, noHeaderId: true, smoothLivePreview: true, simpleLineBreaks: true }),
 
             html = converter.makeHtml(text);
 
-        this.setState({
-            markdownText: text
-        })
 
         this.props.setMarkdown(text)
 
