@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\components\App.tsx" />
+    <None Remove="ClientApp\components\Email Builder\Data Builder\Contacts.tsx" />
     <None Remove="ClientApp\components\Email Builder\DraftEditor.tsx" />
     <None Remove="ClientApp\components\Email Builder\HTML Editor\HTMLEditor.tsx" />
     <None Remove="ClientApp\components\Email Builder\Insertmarkdown.tsx" />
@@ -33,6 +34,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\components\App.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Email Builder\Data Builder\Contacts.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Email Builder\HTML Editor\DraftEditor.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Email Builder\EmailCreator.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Email Builder\HTML Editor\Insertmarkdown.tsx" />
@@ -41,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\components\Email Builder\Data Builder\" />
+    <Folder Include="ClientApp\JS\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
